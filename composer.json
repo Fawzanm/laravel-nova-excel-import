@@ -1,0 +1,30 @@
+{
+    "name": "salfade/nova-excel-export",
+    "description": "A Laravel Nova card.",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0",
+        "rap2hpoutre/fast-excel": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Salfade\\NovaExcelExport\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Salfade\\NovaExcelExport\\CardServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
