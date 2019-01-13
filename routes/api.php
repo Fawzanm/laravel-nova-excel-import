@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
@@ -52,10 +53,20 @@ Route::post('/import', function (Request $request) {
 
     }
 
-    $collection = (new FastExcel)->import($request->file('file'), function ($line)  use ($model){
-        return $model::create($line);
-    });
-    $numOfEntries=$collection->count();
+    $numOfEntries=0;
+    try {
+        DB::beginTransaction();
+        $collection = (new FastExcel)->import($request->file('file'), function ($line)  use ($model){
+            return $model::create($line);
+
+        });
+        DB::commit();
+        $numOfEntries=$collection->count();
+    } catch (\PDOException $e) {
+        DB::rollBack();
+        return response()->json(['error' => $e], 422);
+
+    }
     return response()->json(['message' => $numOfEntries.' Entries Imported Successfully '], 200);
 
 });

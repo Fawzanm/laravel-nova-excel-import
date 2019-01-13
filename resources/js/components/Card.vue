@@ -54,7 +54,7 @@
                 required_fields:[],
                 model:'',
                 heading:'',
-                label:'no file selected'
+                label:'No File'
             }
         },
         methods: {
@@ -81,7 +81,7 @@
                     }).catch(d => {
                         if (this.required_fields != null) {
                             for (var key in d.response.data.error) {
-                                this.$toasted.show(d.response.data.error[key][0], {type: 'error'})
+                                this.$toasted.show(d.response.data.error[key], {type: 'error'})
 
                             }
                         }
