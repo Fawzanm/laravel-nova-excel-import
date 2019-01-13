@@ -8,7 +8,8 @@
     "license": "MIT",
     "require": {
         "php": ">=7.1.0",
-        "rap2hpoutre/fast-excel": "^1.1"
+        "rap2hpoutre/fast-excel": "^1.1",
+        "ext-pdo": "*"
     },
     "autoload": {
         "psr-4": {
